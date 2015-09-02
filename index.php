@@ -54,10 +54,13 @@
 <hr>
     <div class="form-group">
             <div class="col-sm-12">
-                <div class="col-sm-12">
+                <div class="col-sm-4">
                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#cModal"
                     data-bind="click: cAdd"><span class="glyphicon glyphicon-plus-sign"></span> Add Contact</button>
+                      <button type="button" class="btn btn-danger" 
+                     data-bind="click: cClear,visible: cList().length >0"><span class="glyphicon glyphicon-trash"></span> Clear </button>
                 </div>
+                 
                  <!--col-sm-12 -->
             </div>
              <!--col-sm-12 -->
@@ -114,6 +117,13 @@
         </div>
         <!-- responsive-div -->
 </div>
+
+<div class="modal-footer">
+            <button type="reset" class="btn btn-default" id="close">Reset</button>
+            <button type="button" class="btn btn-primary" id="save"
+            data-bind="click: sSave">Save changes</button>
+        </div>
+        <!-- modal-footer -->
       </form>
 
         <div class="modal fade" id="cModal" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" ariaHidden="true">

@@ -88,6 +88,15 @@ viewModel.cAdd = function(){
   
 };
 
+viewModel.cClear = function(){
+
+  if (confirm('Are you sure you want to clear contact list?')) {
+    
+    viewModel.cList([]);
+  }
+   
+}
+  
 viewModel.cSave = function(){
   if(viewModel.edit() == false){
     viewModel.cList.push(new viewModel.contactModel(
