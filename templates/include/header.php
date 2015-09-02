@@ -9,8 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Blog Home - Start Bootstrap Template</title>
-
+    <title>knockoutJS Crud</title>
+    <link href="css/style.css" rel="stylesheet">
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 

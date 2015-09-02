@@ -1,7 +1,7 @@
 <?php include "templates/include/header.php" ?>
     <!-- Page Content -->
     <div class="container">
-<div class="panel-heading text-center"><h3>Student Information</h3></div>
+<div class="text-center "><h1 class="page-header">Student <small>Information</small></h1></div>
         <hr>
         <form class="form-horizontal">
         <div class="form-group">

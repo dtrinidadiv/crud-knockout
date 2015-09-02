@@ -76,7 +76,6 @@ viewModel.sSave = function(){
 };
 
 viewModel.cAdd = function(){
-   alert('cAdd');
   var self = this;
   self.cFName([]);
   self.cLName([]);
@@ -90,7 +89,6 @@ viewModel.cAdd = function(){
 };
 
 viewModel.cSave = function(){
-   alert('push clist');
   if(viewModel.edit() == false){
     viewModel.cList.push(new viewModel.contactModel(
 
