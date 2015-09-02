@@ -23,6 +23,8 @@
 
     <!-- Knockout Mapping plugin-->
    <script src="js/knockout.mapping-2.4.1.js"></script>
+
+   <script src="js/viewModel.js"></script>
 </body>
 
 </html>
