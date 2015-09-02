@@ -18,6 +18,11 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
+    <!-- knockoutJS -->
+   <script src="js/knockout-3.3.0.js"></script>
+
+    <!-- Knockout Mapping plugin-->
+   <script src="js/knockout.mapping-2.4.1.js"></script>
 </body>
 
 </html>
