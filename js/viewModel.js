@@ -20,8 +20,30 @@ var viewModel = {
   removed_cid: ko.observableArray([]),
   cid_delete: ko.observable(),
   edit:       ko.observable(false),
-  stud_id:    ko.observable(),
+  student_id:    ko.observable(),
   btnCancel:  ko.observable(),
+  //showModal:  ko.observable('modal'),
+
+
+  onRequest: function(req, options, callback){
+    var json,
+        self = this;
+        
+    json = ko.toJS(viewModel);
+    json.request = req;
+    json.student_id = viewModel.student_id();
+    
+    $.ajax({
+      url:  'classes/class.main.php',
+      type: 'POST',
+      data: {'json' : JSON.stringify(json)},
+      success: function(data){
+          window[callback](data);
+      }
+       
+    });
+  },
+  
 
   //Student Model
   studentModel: function(sID,sFname,sMname,sLname,sAddress,sNotes,sType){
@@ -50,7 +72,7 @@ var viewModel = {
    contactID: function(cid_delete){
     var self = this;
     self.cid_delete = ko.observable(cid_delete);
-  }
+  },
  
   
 };
@@ -59,13 +81,14 @@ var viewModel = {
 i = 0;
 
 viewModel.sSave = function(){
-  
+  alert('ssave');
   var self = this, 
   callback = 'successMsg';
   
-  if(viewModel.stud_id() == null){
+  if(viewModel.student_id() == null){
     self.onRequest('save', successMsg, callback);
     alert('Data Inserted on the database');
+    
   }else{
     self.onRequest('update', successMsg, callback);
     self.onRequest('remove', successMsg, callback);
@@ -82,7 +105,6 @@ viewModel.cAdd = function(){
   self.cEmail([]);
   self.cTitle([]);
   self.cPhone([]);
-  self.cPType([]);
   self.cNotes([]);
   viewModel.edit(false);
   
@@ -159,6 +181,13 @@ viewModel.btnCancel = function(){
 };
 
  
+function successMsg(){
+    $.getJSON('../classes/class.main.php',
+    function(data){
+      console.log(JSON.stringify(data));
+    });
+}
+
 
 // *** JR: the following notes are for you, in case you may need them:
 // ***
