@@ -68,3 +68,7 @@
 
 
 
+ #dataTable .jqx-grid-cell-pinned, #dataTable .jqx-grid-column-header
+    {
+        background-color: Teal;
+    }

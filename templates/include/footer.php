@@ -11,7 +11,7 @@
 
     </div>
     <!-- /.container -->
-
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.7.0/lodash.min.js"></script>
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
@@ -24,7 +24,9 @@
     <!-- Knockout Mapping plugin-->
    <script src="js/knockout.mapping-2.4.1.js"></script>
 
+   <script src="js/jquery.dataTables.js"></script>
    <script src="js/viewModel.js"></script>
+   <script src="js/studentinfo.js"></script>
 </body>
 
 </html>

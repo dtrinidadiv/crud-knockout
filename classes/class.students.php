@@ -5,13 +5,21 @@ class Students{
     private $db;
     public $lastid;
     public function __construct(){  
+
         $this->db = new Database();
+
+    if(isset($_POST['json'])){
         $json = $_POST['json'];
         $_SESSION['jsonData'] = $json;
         $json = json_decode($_SESSION["jsonData"],true);
         $this->data = $json;
         $this->action = $json['request'];
+         $this->lastid = $this->db->lastInsertId();
+
+         
+    }else{
         $this->lastid = $this->db->lastInsertId();
+    }
     
     }
 
@@ -33,8 +41,9 @@ class Students{
     }
     
     public function update(){
+
         $this->logFile($this->data);
-        $student_id = $this->data['sID'];
+        $student_id = $this->data['student_id'];
         $sFname = $this->data['sFname'];
         $sMname = $this->data['sMname'];
         $sLname = $this->data['sLname'];
@@ -50,15 +59,15 @@ class Students{
     }
     
     public function view($id=null){
-        $business = $this->db->fetchAll('students','id='.$id);
+        $student = $this->db->fetchAll('students','sID='.$id);
         
-        return $business;
+        return $student;
     }
     
     public function viewAll(){
-        $business = $this->db->fetchAll('students',null);
+        $students = $this->db->fetchAll('students',null);
         
-        return $business;
+        return $students;
     }
     
     public function remove(){

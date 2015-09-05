@@ -16,7 +16,7 @@
 
     <!-- Custom CSS -->
     <link href="css/blog-home.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="css/jquery.dataTables.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -39,7 +39,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">crud-knockout</a>
+                <a class="navbar-brand" href=".">crud-knockout</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

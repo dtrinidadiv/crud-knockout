@@ -9,13 +9,20 @@ class Contacts{
 
     
     public function __construct(){
+
+
         $this->db = new Database();   
+        if(isset($_POST['json'])){
         $json = $_POST['json'];
         $_SESSION['jsonData'] = $json;
         $json = json_decode($_SESSION["jsonData"],true);
         
         $this->data = $json;
         $this->action = $json['request'];
+        }else{
+            $this->action = "";
+              //echo 'JSON is empty';
+        }
     }
     
     public function save($id){

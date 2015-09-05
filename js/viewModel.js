@@ -22,7 +22,11 @@ var viewModel = {
   edit:       ko.observable(false),
   student_id:    ko.observable(),
   btnCancel:  ko.observable(),
-  //showModal:  ko.observable('modal'),
+  showInfo:   ko.observable(true),
+  showModal:  ko.observable('modal'),
+  showRow:    ko.observable(false),
+  showStudentInfo:    ko.observable(false),
+
 
 
   onRequest: function(req, options, callback){
@@ -88,13 +92,16 @@ viewModel.sSave = function(){
   if(viewModel.student_id() == null){
     self.onRequest('save', successMsg, callback);
     alert('Data Inserted on the database');
-    
+
   }else{
     self.onRequest('update', successMsg, callback);
-    self.onRequest('remove', successMsg, callback);
+   // self.onRequest('remove', successMsg, callback);
+   
     alert('Data Updated on the database');
   }
+  viewModel.showStudentInfo(false);
   viewModel.edit(false);
+  viewModel.updateTable();
   
 };
 
@@ -180,32 +187,67 @@ viewModel.btnCancel = function(){
   
 };
 
- 
+
+viewModel.showTable = function(){
+  
+    viewModel.showRow(!viewModel.showRow());
+    viewModel.showInfo(!viewModel.showInfo());
+    var sTable = $('#studentTable').dataTable();
+    
+    $.ajax({
+        url: 'classes/class.main.php',
+        dataType: 'json',
+        success: function (data) {
+            sTable.fnClearTable();
+            for(var i = 0; i <  data['info']['allStudents'].length; i++) {
+                sTable.fnAddData([
+                    data['info']['allStudents'][i]['sID'],
+                    data['info']['allStudents'][i]['sFname'],
+                    data['info']['allStudents'][i]['sMname'],
+                    data['info']['allStudents'][i]['sLname'],
+                    data['info']['allStudents'][i]['sAddress'],
+                    data['info']['allStudents'][i]['sNotes']
+                ]);
+            }
+        },
+        error: function(ts) { alert(ts.responseText) }
+    });
+    
+
+};
+
+viewModel.updateTable= function(){
+  
+    var sTable = $('#studentTable').dataTable();
+    
+    $.ajax({
+        url: 'classes/class.main.php',
+        dataType: 'json',
+        success: function (data) {
+            sTable.fnClearTable();
+            for(var i = 0; i <  data['info']['allStudents'].length; i++) {
+                sTable.fnAddData([
+                    data['info']['allStudents'][i]['sID'],
+                    data['info']['allStudents'][i]['sFname'],
+                    data['info']['allStudents'][i]['sMname'],
+                    data['info']['allStudents'][i]['sLname'],
+                    data['info']['allStudents'][i]['sAddress'],
+                    data['info']['allStudents'][i]['sNotes']
+                ]);
+            }
+        },
+        error: function(ts) { alert(ts.responseText) }
+    });
+    
+
+};
+
 function successMsg(){
-    $.getJSON('../classes/class.main.php',
+    $.getJSON('classes/class.main.php',
     function(data){
       console.log(JSON.stringify(data));
     });
 }
 
 
-// *** JR: the following notes are for you, in case you may need them:
-// ***
-// *** KO: Subscribe (subscription) defined:
-// **
-// ** Options for SUBSCRIBE KO: "change" or "beforeChange" (these have to do about when the subscribe function is called)
-// **
-// ** Example:
-// ** var mySub = myViewModel.nameOfObservable.subscribe( callback ,target ,event )  <-- params for subscribe
-// **
-// ** 'callback' is the function that is called whenever the observable is changed & the notification happens
-// ** 'target' (optional) defines the value of 'this' in the callback function
-// ** 'event'  (optional) default is "change" and is the name of the event to receive notification for (other options: "beforeChange")
-
-//ko.applyBindings(viewModel, $("#viewModel")[0]);
-// ko.applyBindings(mAgency, $("#magency")[0]);
-// var mainModel = {
-//   viewModel,
-//   mAgency
-// };
 ko.applyBindings(viewModel);

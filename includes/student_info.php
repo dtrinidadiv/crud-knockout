@@ -1,10 +1,9 @@
-<?php include "templates/include/header.php" ?>
-    <!-- Page Content -->
-<div class="container"  data-bind ="visible: showInfo">
-    <div class="text-center "><h1 class="page-header">Student <small>Information</small></h1></div>
-        <hr>
-        <form class="form-horizontal">
-        <div class="form-group">
+<div class="container" id="sInfo" data-bind="visible: showStudentInfo">
+	<div class="row" id="viewModel">
+	<div class="panel-heading text-center"><h1 class="page-header">Student <small>Information</small></h1></div></div><hr>
+	<form class="form-horizontal" method="POST">
+		
+		 <div class="form-group">
                  <div class="col-sm-12">
                 <div class="col-sm-12">
                     <label>Student Name:</label>
@@ -52,10 +51,12 @@
             </div>
         </div>
 <hr>
-    <div class="form-group">
+		
+<!--========================================================== END OF STUDENT ====================================================================-->
+<div class="form-group">
             <div class="col-sm-12">
                 <div class="col-sm-4">
-                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#cModal"
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#cModal2"
                     data-bind="click: cAdd"><span class="glyphicon glyphicon-plus-sign"></span> Add Contact</button>
                       <button type="button" class="btn btn-danger" 
                      data-bind="click: cClear,visible: cList().length >0"><span class="glyphicon glyphicon-trash"></span> Clear </button>
@@ -94,7 +95,7 @@
                                 </div>
                                 <span> </span> 
                                 <div class="btn-group btn-group-xs" role="group" aria-label="">
-                                    <span><span class="glyphicon glyphicon-edit" id="save" data-toggle="modal" data-target="#cModal" 
+                                    <span><span class="glyphicon glyphicon-edit" id="save" data-toggle="modal" data-target="#cModal2" 
                                     data-bind="click:  cUpdate.bind($data,$index())"></span></span>
                                 </div>
                             </div>
@@ -117,56 +118,23 @@
         </div>
         <!-- responsive-div -->
 
+<input type="hidden" id="studentID" name='student_id'
+		data-bind="value: student_id">
+		<!--hiddent input for ID-->
+		<div class="modal-footer">
+			<button type="reset" class="btn btn-default" id="close">Reset</button>
+			<button type="button" class="btn btn-primary" id="save"
+				data-bind="click: sSave">Save changes</button>
+		</div>
+		<!--end of modal-footer-->
+		
+	</form>
+	<!--end of form-->
 </div>
-    <div class="form-group">
-            <div class="col-sm-12">
-                <div class="col-sm-12">
-                    <button type="button" class="btn btn-danger" id="showAll"
-                    data-bind="click: showTable"><span class="glyphicon glyphicon-list"></span> Show All Students</button>
-                </div>
-                 <!--col-sm-12 -->
-            </div>
-        </div>
-         <!--col-sm-12 -->
-
-
-
-<div class="modal-footer">
-            <button type="reset" class="btn btn-default" id="close">Reset</button>
-            <button type="button" class="btn btn-primary" id="save"
-            data-bind="click: sSave">Save changes</button>
-        </div>
-        <!-- modal-footer -->
-      </form>
-
-        <div class="modal fade" id="cModal" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" ariaHidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true" 
-                                data-bind="click: btnCancel">&times;</span>
-                            </button>
-                            <div class="panel-heading modal-title" id="myModalLabel"><strong class="text-header">Add New Contact Information</strong></div>
-                        </div> <!-- MODAL HEADER -->
-                            <div class="modal-body">
-                                <input type="hidden" id="cID"
-                                data-bind = "textInput: cID">
-                                <?php include_once('includes/modal/contact_modal.php'); ?>
-                            </div>
-                            <!-- modal-body -->
-                    </div>
-                    <!-- modal-content -->
-                </div>
-                <!-- modal-dialog -->
-        </div>
-            <!-- modal-fade -->
-   
-        <hr>
+<!--end of container-->
 </div>
+<!--========================================================== END OF CONTACTS ====================================================================-->
 
-<div class="container">
-<?php include('includes/view_students.php'); ?>
-<?php include('includes/student_info.php'); ?>
-<?php include "templates/include/footer.php" ?>
-  
+
+<!--========================================================== END OF PAYMENTS ====================================================================-->
+<?php include('includes/modal/modals.php'); ?>
